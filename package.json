@@ -1,0 +1,17 @@
+{
+  "name": "@rwgps/units",
+  "version": "0.0.0",
+  "description": "format numbers for use on ridewithgps sites",
+  "main": "src/index.js",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "standard": "^8.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Quinn Rohlf <quinn@ridewithgps.com>",
+  "license": "UNLICENSED"
+}
