@@ -1,9 +1,8 @@
 {
   "name": "@rwgps/units",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Unit conversion and formatting",
   "main": "src/index.js",
-  "private": true,
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^7.1.1",
