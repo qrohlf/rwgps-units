@@ -1,10 +1,13 @@
 const unit = (unitSpec) => (val, stringOpts) => ({
+  value: val,
   valueToString: (opts) => val.toLocaleString('en-US', {...unitSpec.defaultStringOpts, ...stringOpts, ...opts}),
-  toString: ({short = false, ...opts} = {}) => (
-    val.toLocaleString('en-US', {...unitSpec.defaultStringOpts, ...stringOpts, ...opts}) +
-    (unitSpec.seperator || ' ') +
-    (short ? unitSpec.short : unitSpec.long)
-  ),
+  toString: ({short = false, ...opts} = {}) => {
+    const valueString = val.toLocaleString('en-US', {...unitSpec.defaultStringOpts, ...stringOpts, ...opts})
+    const unitString = short ? unitSpec.short : unitSpec.long
+    const specSeperator = (unitSpec.seperator && (short ? unitSpec.seperator.short : unitSpec.seperator.long))
+    const seperator = (specSeperator !== undefined) ? specSeperator : ' ' // this is a bit wordy because '' is falsy in JS
+    return valueString + seperator + unitString
+  },
   ...unitSpec
 })
 
@@ -55,9 +58,18 @@ export const grade = unit({
   short: '%',
   compound: false,
   defaultStringOpts: {useGrouping: false, maximumFractionDigits: 1, minimumFractionDigits: 1},
-  seperator: ''
+  seperator: {short: '', long: ' '}
 })
 
+export const degrees = unit({
+  long: 'degrees',
+  short: 'º',
+  compound: false,
+  defaultStringOpts: {useGrouping: false, maximumFractionDigits: 1, minimumFractionDigits: 1},
+  seperator: {short: '', long: ' '}
+})
+
+// TODO
 export const seconds = {
 
 }

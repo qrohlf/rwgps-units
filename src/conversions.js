@@ -18,7 +18,6 @@ export const kmToMiles = (km) => km * C.METERS_IN_KM / C.METERS_IN_MILE
 
 export const kmToFeet = (km) => km * C.METERS_IN_KM / C.METERS_IN_FOOT
 
-
 // Feet -> *
 export const feetToFeet = (ft) => ft
 
@@ -36,6 +35,26 @@ export const milesToMeters = (m) => m * C.METERS_IN_MILE
 export const milesToKm = (m) => m * C.METERS_IN_MILE / C.METERS_IN_KM
 
 export const milesToFeet = (m) => m * C.FEET_IN_MILES
+
+// % (grade)
+export const gradeToGrade = (p) => p
+
+export const gradeToDegrees = (p) => Math.atan(p / 100) * 180 / Math.PI
+
+// Degrees (grade)
+export const degreesToDegrees = (d) => d
+
+export const degreesToGrade = (d) => Math.tan(d * Math.PI / 180) * 100
+
+// MPH (speed)
+export const mphToMph = (mph) => mph
+
+export const mphToKph = (mph) => milesToKm(mph)
+
+// KPH (speed)
+export const kphToKph = (kph) => kph
+
+export const kphToMph = (kph) => kmToMiles(kph)
 
 // Conversion table for programmatic usage.
 // Example:
@@ -70,6 +89,22 @@ const table = {
     km: milesToKm,
     feet: milesToFeet,
     miles: milesToMiles
+  },
+  grade: {
+    grade: gradeToGrade,
+    degrees: gradeToDegrees
+  },
+  degrees: {
+    grade: degreesToGrade,
+    degrees: degreesToDegrees
+  },
+  kph: {
+    kph: kphToKph,
+    mph: kphToMph
+  },
+  mph: {
+    kph: mphToKph,
+    mph: mphToMph
   }
 }
 

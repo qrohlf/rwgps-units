@@ -1,7 +1,7 @@
 {
   "name": "@rwgps/units",
   "version": "0.0.0",
-  "description": "format numbers for use on ridewithgps sites",
+  "description": "Unit conversion and formatting",
   "main": "src/index.js",
   "private": true,
   "dependencies": {},
@@ -10,8 +10,9 @@
     "standard": "^8.6.0"
   },
   "scripts": {
+    "lint": "standard",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Quinn Rohlf <quinn@ridewithgps.com>",
-  "license": "UNLICENSED"
+  "license": "MIT"
 }
