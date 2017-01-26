@@ -9,5 +9,11 @@ export {unitTypes}
 import {formatDistance} from './formatDistance'
 export {formatDistance}
 
+import {formatSpeed} from './formatSpeed'
+export {formatSpeed}
+
+import {formatGrade} from './formatGrade'
+export {formatGrade}
+
 import * as constants from './constants'
 export {constants}
