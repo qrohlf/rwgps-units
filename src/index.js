@@ -15,5 +15,8 @@ export {formatSpeed}
 import {formatGrade} from './formatGrade'
 export {formatGrade}
 
+import {formatDuration} from './formatDuration'
+export {formatDuration}
+
 import * as constants from './constants'
 export {constants}

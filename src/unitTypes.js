@@ -1,3 +1,5 @@
+import {leftPad} from './leftPad'
+
 const unit = (unitSpec) => (val, stringOpts) => ({
   value: val,
   valueToString: (opts) => val.toLocaleString('en-US', {...unitSpec.defaultStringOpts, ...stringOpts, ...opts}),
@@ -86,6 +88,41 @@ export const days = {
 
 }
 
-export const hourMinuteSecond = {
+const MINUTE = 60
+const HOUR = 60 * 60
+const timePad = (num) => leftPad(num, 2, '0')
 
-}
+export const minuteSecond = (seconds, stringOpts) => ({
+  long: 'mm:ss',
+  short: 'min',
+  compound: false,
+  toString: ({short = false} = {}) => {
+    const mins = timePad(Math.floor(seconds / MINUTE))
+    const secs = timePad(Math.floor(seconds) % MINUTE)
+    `${hrs}:${mins} ${short ? 'mm:ss' : 'min'}`
+  },
+  valueToString: () => {
+    const mins = timePad(Math.floor(seconds / MINUTE))
+    const secs = timePad(Math.floor(seconds) % MINUTE)
+    return `${hrs}:${mins}`
+  }
+})
+
+export const hourMinuteSecond = (seconds, stringOpts) => ({
+  long: 'hh:mm',
+  short: 'hrs',
+  compound: false,
+  defaultStringOpts: '',
+  valueToString: () => {
+    const hrs = Math.floor(seconds / HOUR)
+    const mins = timePad(Math.floor((seconds % HOUR) / MINUTE))
+    const secs = timePad(Math.floor(seconds) % MINUTE)
+    return `${hrs}:${mins}`
+  },
+  toString: ({short = false} = {}) => {
+    const hrs = Math.floor(seconds / HOUR)
+    const mins = timePad(Math.floor((seconds % HOUR) / MINUTE))
+    const secs = timePad(Math.floor(seconds) % MINUTE)
+    return `${hrs}:${mins} ${short ? 'mm:ss' : 'hrs'}`
+  }
+})

@@ -111,8 +111,8 @@ const table = {
 export const convert = (val) => ({
   from: (from) => ({
     to: (to) => {
-      if (!table[from]) { throw TypeError(`Can't find unit type '${from}'`)}
-      if (!table[from][to]) { throw TypeError(`Can't convert from '${from}' to '${to}'`)}
+      if (!table[from]) { throw TypeError(`Can't find unit type '${from}'`) }
+      if (!table[from][to]) { throw TypeError(`Can't convert from '${from}' to '${to}'`) }
       return table[from][to](val)
     }
   })
