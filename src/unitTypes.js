@@ -44,14 +44,14 @@ export const miles = unit({
 export const kmPerHour = unit({
   long: 'km per hour',
   short: 'kph',
-  compound: {numerator: km, denominator: hours},
+  compound: true,
   defaultStringOpts: {useGrouping: true, maximumFractionDigits: 1}
 })
 
 export const milesPerHour = unit({
   long: 'miles per hour',
   short: 'mph',
-  compound: {numerator: miles, denominator: hours},
+  compound: true,
   defaultStringOpts: {useGrouping: true, maximumFractionDigits: 1}
 })
 
@@ -71,23 +71,6 @@ export const degrees = unit({
   seperator: {short: '', long: ' '}
 })
 
-// TODO
-export const seconds = {
-
-}
-
-export const minutes = {
-
-}
-
-export const hours = {
-
-}
-
-export const days = {
-
-}
-
 const MINUTE = 60
 const HOUR = 60 * 60
 const timePad = (num) => leftPad(num, 2, '0')
@@ -99,12 +82,12 @@ export const minuteSecond = (seconds, stringOpts) => ({
   toString: ({short = false} = {}) => {
     const mins = timePad(Math.floor(seconds / MINUTE))
     const secs = timePad(Math.floor(seconds) % MINUTE)
-    `${hrs}:${mins} ${short ? 'mm:ss' : 'min'}`
+    return `${mins}:${secs} ${short ? 'mm:ss' : 'min'}`
   },
   valueToString: () => {
     const mins = timePad(Math.floor(seconds / MINUTE))
     const secs = timePad(Math.floor(seconds) % MINUTE)
-    return `${hrs}:${mins}`
+    return `${mins}:${secs}`
   }
 })
 
@@ -116,13 +99,31 @@ export const hourMinuteSecond = (seconds, stringOpts) => ({
   valueToString: () => {
     const hrs = Math.floor(seconds / HOUR)
     const mins = timePad(Math.floor((seconds % HOUR) / MINUTE))
-    const secs = timePad(Math.floor(seconds) % MINUTE)
     return `${hrs}:${mins}`
   },
   toString: ({short = false} = {}) => {
     const hrs = Math.floor(seconds / HOUR)
     const mins = timePad(Math.floor((seconds % HOUR) / MINUTE))
-    const secs = timePad(Math.floor(seconds) % MINUTE)
     return `${hrs}:${mins} ${short ? 'mm:ss' : 'hrs'}`
+  }
+})
+
+export const paceKm = (secondsPerKm) => ({
+  short: 'min/km',
+  long: 'minutes per km',
+  compound: true,
+  valueToString: hourMinuteSecond(secondsPerKm).valueToString,
+  toString: ({short = false} = {}) => {
+    hourMinuteSecond(secondsPerKm).valueToString() + ' ' + (short ? 'min/km' : 'minutes per km')
+  }
+})
+
+export const paceMiles = (secondsPerMile) => ({
+  short: 'min/mi',
+  long: 'minutes per mi',
+  compound: true,
+  valueToString: hourMinuteSecond(secondsPerMile).valueToString,
+  toString: ({short = false} = {}) => {
+    hourMinuteSecond(secondsPerMile).valueToString() + ' ' + (short ? 'min/mi' : 'minutes per mile')
   }
 })

@@ -56,6 +56,11 @@ export const kphToKph = (kph) => kph
 
 export const kphToMph = (kph) => kmToMiles(kph)
 
+// Pace
+export const secondsPerKmToMiles = (secondsPerKm) => secondsPerKm / kmToMiles(1)
+
+export const secondsPerMileToKm = (secondsPerMile) => secondsPerMile / milesToKm(1)
+
 // Conversion table for programmatic usage.
 // Example:
 // import {conversions as C} from 'rwgps-units'
@@ -105,6 +110,12 @@ const table = {
   mph: {
     kph: mphToKph,
     mph: mphToMph
+  },
+  secondsPerKm: {
+    secondsPerMile: secondsPerKmToMiles
+  },
+  secondsPerMile: {
+    secondsPerKm: secondsPerMileToKm
   }
 }
 
