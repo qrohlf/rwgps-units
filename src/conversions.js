@@ -1,5 +1,7 @@
 import * as C from './constants'
 
+const identity = a => a // suck it, ayn rand
+
 // Meters -> *
 export const metersToMeters = (m) => m
 
@@ -56,6 +58,11 @@ export const kphToKph = (kph) => kph
 
 export const kphToMph = (kph) => kmToMiles(kph)
 
+export const kphToMps = (kph) => (kph * C.METERS_IN_KM) / C.SECONDS_IN_HOUR
+
+// MPS (meters per second) (speed)
+export const mpsToKph = (mps) => (mps / C.METERS_IN_KM) * C.SECONDS_IN_HOUR
+
 // Pace
 export const secondsPerKmToMiles = (secondsPerKm) => secondsPerKm / kmToMiles(1)
 
@@ -105,11 +112,16 @@ const table = {
   },
   kph: {
     kph: kphToKph,
-    mph: kphToMph
+    mph: kphToMph,
+    mps: kphToMps
   },
   mph: {
     kph: mphToKph,
     mph: mphToMph
+  },
+  mps: {
+    kph: mpsToKph,
+    mps: identity
   },
   secondsPerKm: {
     secondsPerMile: secondsPerKmToMiles
