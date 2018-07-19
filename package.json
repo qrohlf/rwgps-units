@@ -6,11 +6,16 @@
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
     "standard": "^8.6.0"
   },
   "scripts": {
     "lint": "standard",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-register"
   },
   "author": "Quinn Rohlf <quinn@ridewithgps.com>",
   "license": "MIT"
