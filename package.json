@@ -15,7 +15,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha --require babel-core/register"
   },
   "author": "Quinn Rohlf <quinn@ridewithgps.com>",
   "license": "MIT"
