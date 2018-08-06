@@ -17,6 +17,6 @@
     "lint": "standard",
     "test": "mocha --require babel-core/register src/**/*.test.js"
   },
-  "author": "Quinn Rohlf <quinn@ridewithgps.com>",
+  "author": "Ride with GPS <info@ridewithgps.com>",
   "license": "MIT"
 }
