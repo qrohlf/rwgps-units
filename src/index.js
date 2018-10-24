@@ -21,5 +21,8 @@ export {formatDuration}
 import {formatPace} from './formatPace'
 export {formatPace}
 
+import {formatPower} from './formatPower'
+export {formatPower}
+
 import * as constants from './constants'
 export {constants}

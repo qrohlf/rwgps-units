@@ -25,7 +25,7 @@ export const feetToFeet = (ft) => ft
 
 export const feetToMeters = (ft) => ft * C.METERS_IN_FOOT
 
-export const feetToMiles = (ft) => ft / C.FEET_IN_MILES
+export const feetToMiles = (ft) => ft / C.FEET_IN_MILE
 
 export const feetToKm = (ft) => ft * C.METERS_IN_FOOT / C.METERS_IN_KM
 
@@ -36,7 +36,7 @@ export const milesToMeters = (m) => m * C.METERS_IN_MILE
 
 export const milesToKm = (m) => m * C.METERS_IN_MILE / C.METERS_IN_KM
 
-export const milesToFeet = (m) => m * C.FEET_IN_MILES
+export const milesToFeet = (m) => m * C.FEET_IN_MILE
 
 // % (grade)
 export const gradeToGrade = (p) => p

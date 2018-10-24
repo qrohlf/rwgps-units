@@ -75,6 +75,85 @@ const MINUTE = 60
 const HOUR = 60 * 60
 const timePad = (num) => leftPad(num, 2, '0')
 
+// the "long" format of duration is a little non-standard, becaue
+// the labels are intermingled with the units
+
+const hms = (seconds) => {
+  const s = Math.floor(seconds) % MINUTE
+  const m = Math.floor((seconds % HOUR) / MINUTE)
+  const h = Math.floor(seconds / HOUR)
+  return {h, m, s}
+}
+
+const hmsFormat = (seconds, _opts = {}) => {
+  const defaults = {includeSeconds: false, includeMinutes: true}
+  const opts = {...defaults, ..._opts}
+
+  const {h, m, s} = hms(seconds)
+  const unitParts = []
+
+  h > 0 && unitParts.push({
+    str: h.toLocaleString('en-US', {maximumFractionDigits: 0}),
+    long: h > 1 ? 'hours' : 'hour',
+    short: 'hrs',
+    compound: 'h'
+  })
+
+  ;(h > 0 || m > 0) && opts.includeMinutes && unitParts.push({
+    str: h > 0 ? timePad(m) : m,
+    long: m > 1 ? 'minutes' : 'minute',
+    short: 'min',
+    compound: 'm'
+  })
+
+  ;((seconds < 60) || (opts.includeSeconds && opts.includeMinutes)) && unitParts.push({
+    str: seconds < 60 ? s : timePad(s),
+    long: s > 1 ? 'seconds' : 'second',
+    short: 'sec',
+    compound: 's'
+  })
+
+  if (unitParts.length === 1) {
+    const u = unitParts[0]
+    return {
+      valueShort: u.str,
+      labelShort: u.short,
+      valueLong: u.str,
+      labelLong: u.long
+    }
+  }
+  return {
+    valueShort: unitParts.map(u => u.str).join(':'),
+    labelShort: unitParts.map(u => u.compound).join(':'),
+    valueLong: unitParts.map(u => `${u.str} ${u.short}`).join(' '),
+    labelLong: ''
+  }
+}
+
+export const duration = (seconds, opts) => {
+  const {
+    valueShort,
+    labelShort,
+    valueLong,
+    labelLong
+  } = hmsFormat(seconds, opts)
+
+  return {
+    value: seconds,
+    long: labelLong,
+    short: labelShort,
+    compound: false,
+    toString: ({short = false} = {}) => (
+      short
+        ? [valueShort, labelShort].join(' ').trim()
+        : [valueLong, labelLong].join(' ').trim()
+    ),
+    valueToString: ({short = false} = {}) => (
+      short ? valueShort : valueLong
+    )
+  }
+}
+
 export const minuteSecond = (seconds, stringOpts) => ({
   long: 'mm:ss',
   short: 'min',
