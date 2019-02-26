@@ -1,8 +1,13 @@
 // TODO
 import * as C from './constants'
-import {convert} from './conversions'
 import * as unitTypes from './unitTypes'
 
-export const formatDuration = (seconds, opts) => {
-  return unitTypes.hourMinuteSecond(seconds, opts)
+export const formatDuration = (seconds, {smallUnits, bigUnits, ...stringOpts} = {}) => {
+  const threshold = C.SECONDS_IN_HOUR
+
+  if (!bigUnits && (seconds < threshold || smallUnits)) {
+    return unitTypes.minuteSecond(seconds, stringOpts)
+  } else {
+    return unitTypes.hourMinuteSecond(seconds, stringOpts)
+  }
 }

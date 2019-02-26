@@ -77,12 +77,12 @@ const timePad = (num) => leftPad(num, 2, '0')
 
 export const minuteSecond = (seconds, stringOpts) => ({
   long: 'mm:ss',
-  short: 'min',
+  short: 'mm:ss',
   compound: false,
   toString: ({short = false} = {}) => {
     const mins = timePad(Math.floor(seconds / MINUTE))
     const secs = timePad(Math.floor(seconds) % MINUTE)
-    return `${mins}:${secs} ${short ? 'mm:ss' : 'min'}`
+    return `${mins}:${secs} mm:ss`
   },
   valueToString: () => {
     const mins = timePad(Math.floor(seconds / MINUTE))
@@ -93,7 +93,7 @@ export const minuteSecond = (seconds, stringOpts) => ({
 
 export const hourMinuteSecond = (seconds, stringOpts) => ({
   long: 'hh:mm',
-  short: 'hrs',
+  short: 'hh:mm',
   compound: false,
   defaultStringOpts: '',
   valueToString: () => {
@@ -104,7 +104,7 @@ export const hourMinuteSecond = (seconds, stringOpts) => ({
   toString: ({short = false} = {}) => {
     const hrs = Math.floor(seconds / HOUR)
     const mins = timePad(Math.floor((seconds % HOUR) / MINUTE))
-    return `${hrs}:${mins} ${short ? 'mm:ss' : 'hrs'}`
+    return `${hrs}:${mins} hh:mm`
   }
 })
 
