@@ -77,12 +77,12 @@ const timePad = (num) => leftPad(num, 2, '0')
 
 export const minuteSecond = (seconds, stringOpts) => ({
   long: 'mm:ss',
-  short: 'min',
+  short: 'mm:ss',
   compound: false,
   toString: ({short = false} = {}) => {
     const mins = timePad(Math.floor(seconds / MINUTE))
     const secs = timePad(Math.floor(seconds) % MINUTE)
-    return `${mins}:${secs} ${short ? 'mm:ss' : 'min'}`
+    return `${mins}:${secs} mm:ss`
   },
   valueToString: () => {
     const mins = timePad(Math.floor(seconds / MINUTE))
@@ -91,9 +91,9 @@ export const minuteSecond = (seconds, stringOpts) => ({
   }
 })
 
-export const hourMinuteSecond = (seconds, stringOpts) => ({
+export const hourMinute = (seconds, stringOpts) => ({
   long: 'hh:mm',
-  short: 'hrs',
+  short: 'hh:mm',
   compound: false,
   defaultStringOpts: '',
   valueToString: () => {
@@ -104,7 +104,7 @@ export const hourMinuteSecond = (seconds, stringOpts) => ({
   toString: ({short = false} = {}) => {
     const hrs = Math.floor(seconds / HOUR)
     const mins = timePad(Math.floor((seconds % HOUR) / MINUTE))
-    return `${hrs}:${mins} ${short ? 'mm:ss' : 'hrs'}`
+    return `${hrs}:${mins} hh:mm`
   }
 })
 
@@ -112,9 +112,9 @@ export const paceKm = (secondsPerKm) => ({
   short: 'min/km',
   long: 'minutes per km',
   compound: true,
-  valueToString: hourMinuteSecond(secondsPerKm).valueToString,
+  valueToString: minuteSecond(secondsPerKm).valueToString,
   toString: ({short = false} = {}) => {
-    hourMinuteSecond(secondsPerKm).valueToString() + ' ' + (short ? 'min/km' : 'minutes per km')
+    minuteSecond(secondsPerKm).valueToString() + ' ' + (short ? 'min/km' : 'minutes per km')
   }
 })
 
@@ -122,8 +122,8 @@ export const paceMiles = (secondsPerMile) => ({
   short: 'min/mi',
   long: 'minutes per mi',
   compound: true,
-  valueToString: hourMinuteSecond(secondsPerMile).valueToString,
+  valueToString: minuteSecond(secondsPerMile).valueToString,
   toString: ({short = false} = {}) => {
-    hourMinuteSecond(secondsPerMile).valueToString() + ' ' + (short ? 'min/mi' : 'minutes per mile')
+    minuteSecond(secondsPerMile).valueToString() + ' ' + (short ? 'min/mi' : 'minutes per mile')
   }
 })
