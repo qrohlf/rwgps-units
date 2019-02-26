@@ -8,6 +8,6 @@ export const formatDuration = (seconds, {smallUnits, bigUnits, ...stringOpts} = 
   if (!bigUnits && (seconds < threshold || smallUnits)) {
     return unitTypes.minuteSecond(seconds, stringOpts)
   } else {
-    return unitTypes.hourMinuteSecond(seconds, stringOpts)
+    return unitTypes.hourMinute(seconds, stringOpts)
   }
 }

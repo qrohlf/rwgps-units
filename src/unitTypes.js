@@ -91,7 +91,7 @@ export const minuteSecond = (seconds, stringOpts) => ({
   }
 })
 
-export const hourMinuteSecond = (seconds, stringOpts) => ({
+export const hourMinute = (seconds, stringOpts) => ({
   long: 'hh:mm',
   short: 'hh:mm',
   compound: false,
@@ -112,9 +112,9 @@ export const paceKm = (secondsPerKm) => ({
   short: 'min/km',
   long: 'minutes per km',
   compound: true,
-  valueToString: hourMinuteSecond(secondsPerKm).valueToString,
+  valueToString: minuteSecond(secondsPerKm).valueToString,
   toString: ({short = false} = {}) => {
-    hourMinuteSecond(secondsPerKm).valueToString() + ' ' + (short ? 'min/km' : 'minutes per km')
+    minuteSecond(secondsPerKm).valueToString() + ' ' + (short ? 'min/km' : 'minutes per km')
   }
 })
 
@@ -122,8 +122,8 @@ export const paceMiles = (secondsPerMile) => ({
   short: 'min/mi',
   long: 'minutes per mi',
   compound: true,
-  valueToString: hourMinuteSecond(secondsPerMile).valueToString,
+  valueToString: minuteSecond(secondsPerMile).valueToString,
   toString: ({short = false} = {}) => {
-    hourMinuteSecond(secondsPerMile).valueToString() + ' ' + (short ? 'min/mi' : 'minutes per mile')
+    minuteSecond(secondsPerMile).valueToString() + ' ' + (short ? 'min/mi' : 'minutes per mile')
   }
 })
