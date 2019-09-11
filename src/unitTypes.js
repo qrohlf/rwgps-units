@@ -114,7 +114,7 @@ export const paceKm = (secondsPerKm) => ({
   compound: true,
   valueToString: minuteSecond(secondsPerKm).valueToString,
   toString: ({short = false} = {}) => {
-    minuteSecond(secondsPerKm).valueToString() + ' ' + (short ? 'min/km' : 'minutes per km')
+    return minuteSecond(secondsPerKm).valueToString() + ' ' + (short ? 'min/km' : 'minutes per km')
   }
 })
 
@@ -124,6 +124,6 @@ export const paceMiles = (secondsPerMile) => ({
   compound: true,
   valueToString: minuteSecond(secondsPerMile).valueToString,
   toString: ({short = false} = {}) => {
-    minuteSecond(secondsPerMile).valueToString() + ' ' + (short ? 'min/mi' : 'minutes per mile')
+    return minuteSecond(secondsPerMile).valueToString() + ' ' + (short ? 'min/mi' : 'minutes per mile')
   }
 })
