@@ -108,6 +108,25 @@ export const hourMinute = (seconds, stringOpts) => ({
   }
 })
 
+export const hourMinuteSecond = (seconds, stringOpts) => ({
+  long: 'hh:mm:ss',
+  short: 'hh:mm:ss',
+  compound: false,
+  defaultStringOpts: '',
+  valueToString: () => {
+    const hrs = Math.floor(seconds / HOUR)
+    const mins = timePad(Math.floor((seconds % HOUR) / MINUTE))
+    const secs = timePad(seconds % MINUTE)
+    return `${hrs}:${mins}:${secs}`
+  },
+  toString: ({short = false} = {}) => {
+    const hrs = Math.floor(seconds / HOUR)
+    const mins = timePad(Math.floor((seconds % HOUR) / MINUTE))
+    const secs = timePad(seconds % MINUTE)
+    return `${hrs}:${mins}:${secs} hh:mm:ss`
+  }
+})
+
 export const paceKm = (secondsPerKm) => ({
   short: 'min/km',
   long: 'minutes per km',
