@@ -1,6 +1,6 @@
 {
   "name": "@rwgps/units",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Unit conversion and formatting",
   "main": "src/index.js",
   "dependencies": {},
